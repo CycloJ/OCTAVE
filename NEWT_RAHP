@@ -1,0 +1,57 @@
+#Ej  exp(-x)-x
+#x=0
+#e=0.001
+
+pkg load symbolic#se carga symbolic
+clc#borrar pantalla
+clear#borrar variables
+
+syms x
+syms f(x)
+syms g(x)#es la f'(x)
+f(x)=input(' f(x)= ')
+
+fprintf(' Ingrese x\n')
+xi=input(' x= ');# xi
+xia=0; #xi anterior
+
+fprintf('\n Ingresa Error\n')
+e=input(' Er= ');
+
+#Pasamos a fraccion
+e=sym(e,'r');
+xi=sym(xi,'r');
+
+it = 0; #iterador
+
+g(x)=diff(f(x)); #Derivada de f(x)
+ep=1;
+
+fprintf('iteracion   n    n+1     Error\n');
+
+if (g(xi)~=0)
+
+while (e<ep)
+
+   #guardamos nuestro valor para no perderlo en el proceso
+   xia=xi;
+
+   #hacemos por partes
+   nn=(f(xi)/g(xi));
+   n=xi-nn;
+
+   xi=n;
+
+   ep= abs((xi-xia)/xi);
+
+   it=it+1;
+
+   #impresion por pantalla
+   disp([' ',num2str(it),'  -  ',num2str(double(xia)),'  -  ',num2str(double(xi)),' - ',num2str(double(ep))])
+
+endwhile
+
+endif
+
+fprintf('\nRaiz encontrada\n \n')
+disp([' x= ',num2str(double(xi))])
