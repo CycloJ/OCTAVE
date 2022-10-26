@@ -1,0 +1,27 @@
+pkg load symbolic#se carga symbolic
+clc#borrar pantalla
+clear#borrar variables
+
+#Para iniciar el programa le damos al engranaje
+#para llamar a la funcion debemos llamarlo por el nombre que guardamos
+
+function p=pf(g,p0,N,tol)
+  i=1;
+  fprintf('Metodo de punto fijo\n')
+  fprintf('   i    p    error\n')
+
+ while (i<=N) #While debe ser en minuscula y la evitar errores la condicion entre ()
+  p=g(p0);
+  fprintf('   %4.0f   %4.5f   %4.6f\n',i,p,abs(p-p0))
+
+   if (abs(p-p0)<tol) #Tambien puse la condicion entre ()
+     fprintf('Se terminaron las iteraciones ');
+    break;
+
+   else
+   p0=p;
+   i=i+1;
+  #aca habia un endif que era innecesario ya que es un if con else asi que solo lleva un end
+  end
+
+end
