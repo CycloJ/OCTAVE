@@ -1,0 +1,37 @@
+clc#borrar pantalla
+clear#borrar variables
+
+function p=pb(g,x0,xf,E,n)
+  i=1;
+  xm=1;
+  e=1;
+  xi=1;
+  xff=1;
+  fprintf('Metodo de la bisección\n')
+  fprintf('     i        x0       xf      xm    error\n')
+
+  if (g(x0)*g(xf)<0)
+
+   while(i<n+1)
+         xm=(x0+xf)/2;
+
+         xi=x0;
+         xff=xf;
+
+    if (g(x0)*g(xm)>0)
+      x0=xm;
+    else
+      xf=xm;
+    end
+
+    e=(abs((xm-xi)/xm))*100;
+
+    fprintf('   %4.0f   %4.4f   %4.4f   %4.4f   %4.2f\n',i,xi,xff,xm,e);
+
+    i++;
+
+  endwhile
+
+  endif
+
+end
